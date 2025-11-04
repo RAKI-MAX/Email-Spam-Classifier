@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Result</title>
+  <style>
+    body{font-family:Arial;display:flex;align-items:center;justify-content:center;height:100vh;margin:0;background:#eef4ff;}
+    .box{background:#fff;padding:22px;border-radius:10px;box-shadow:0 6px 18px rgba(0,0,0,0.08);width:700px;}
+    .spam{color:#c62828;font-weight:700;}
+    .notspam{color:#2e7d32;font-weight:700;}
+    pre{background:#f6f7f9;padding:12px;border-radius:6px;white-space:pre-wrap;}
+    a.btn{display:inline-block;margin-top:12px;padding:8px 12px;background:#1976d2;color:#fff;border-radius:6px;text-decoration:none;}
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h2>Prediction: 
+      {% if prediction=='Spam' %}
+        <span class="spam">{{ prediction }}</span>
+      {% else %}
+        <span class="notspam">{{ prediction }}</span>
+      {% endif %}
+    </h2>
+    {% if probability is not none and probability >= 0 %}
+      <p>Model confidence: {{ '%.2f'|format(probability*100) }}%</p>
+    {% endif %}
+    <h3>Message</h3>
+    <pre>{{ user_text }}</pre>
+    <a class="btn" href="/">Back</a>
+  </div>
+</body>
+</html>
